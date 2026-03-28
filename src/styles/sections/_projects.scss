@@ -1,0 +1,93 @@
+@use "../abstracts/vars" as *;
+@use "../abstracts/mixins" as *;
+@use "../layout/grid" as *;
+
+#projects {
+  background-color: $white-color;
+  color: $dark-blue-text;
+  margin-top: -10rem;
+  padding-top: 15rem;
+
+  @include media-mobile-and-tablet-only {
+    margin-top: 0;
+    padding-top: 5rem;
+  }
+
+  .section-title {
+    margin-bottom: 4.5rem;
+    inline-size: 100%;
+  }
+
+  .project {
+    @include horizontal-container;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 8rem;
+
+    @include media-mobile-and-tablet-only {
+      grid-template-columns: 1fr;
+      margin-bottom: 4rem;
+    }
+
+    &__text {
+      text-align: left;
+      inline-size: phone-columns(6);
+
+      @include media-tablet {
+        inline-size: tablet-columns(6);
+
+      }
+
+      @include media-desktop {
+        inline-size: desktop-columns(4);
+
+      }
+
+      &-title {
+        font-weight: bold;
+        margin-bottom: 1.8rem;
+        font-size: $mid-font-size;
+
+        @include media-mobile-only {
+          font-size: 2rem;
+        }
+      }
+
+      & p>a {
+        color: $secondary-color;
+      }
+    }
+
+    &__image {
+      inline-size: phone-columns(6);
+
+      border: 1px solid red;
+
+      @include media-tablet {
+        inline-size: tablet-columns(6);
+      }
+
+      @include media-desktop {
+        inline-size: desktop-columns(8);
+      }
+
+      & .thumbnail {
+        border: none;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        transition: all 0.2s ease-out;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+        transition: 0.5s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+          0.5s box-shadow,
+          0.5s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+
+        @include media-mobile-only {
+          border: 1px solid $light-grey;
+          box-shadow: none;
+          margin-bottom: 3.2rem;
+        }
+      }
+    }
+  }
+}

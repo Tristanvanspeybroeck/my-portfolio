@@ -1,0 +1,112 @@
+@use "../abstracts/vars" as *;
+@use "../abstracts/mixins" as *;
+@use "../layout/grid" as *;
+@use "sass:color";
+
+#about {
+  @include horizontal-container;
+  background-color: $primary-color;
+  background-image: linear-gradient(
+    135deg,
+    $primary-color 0%,
+    $secondary-color 100%
+  );
+  color: $white-color;
+  height: 100%;
+  border-top: 0px;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  padding-top: 15rem;
+  padding-bottom: 10%;
+
+  @include media-mobile-and-tablet-only {
+    height: 100%;
+    -webkit-clip-path: none;
+    clip-path: none;
+    padding-top: 5rem;
+  }
+
+  .section-title {
+    margin-bottom: 4.5rem;
+  }
+
+  .about-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: grid-gap();
+
+    @include media-mobile-and-tablet-only {
+      grid-template-columns: 1fr;
+      padding-bottom: 5rem;
+    }
+
+    &__image {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      width: phone-columns(6);
+
+      @include media-tablet {
+        width: tablet-columns(6);
+      }
+
+      @include media-desktop {
+        width: desktop-columns(6);
+      }
+
+      @include media-mobile-and-tablet-only {
+        height: 100%;
+      }
+
+      @include media-mobile-only {
+        padding-bottom: 6.4rem;
+      }
+    }
+
+    &__info {
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      flex-direction: column;
+      width: phone-columns(6);
+
+      @include media-tablet {
+        width: tablet-columns(6);
+      }
+
+      @include media-desktop {
+        width: desktop-columns(6);
+      }
+
+      @include media-mobile-only {
+        align-items: center;
+      }
+
+      &-text {
+        text-align: left;
+
+        @include media-mobile-only {
+          text-align: center;
+        }
+
+        &--important {
+          background: color.adjust($secondary-color, $lightness: -1%);
+          display: inline-block;
+          font-style: italic;
+          padding: 0 0.3rem;
+          margin: 0.3rem 0;
+          line-height: 1.6;
+
+          @include media-mobile-only {
+            display: inline;
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            font-style: normal;
+          }
+        }
+      }
+    }
+  }
+}
